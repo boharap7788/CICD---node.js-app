@@ -1,9 +1,16 @@
-// Import required modules
 const express = require('express');
-
-// Create an instance of Express
 const app = express();
-const port = 3000; // Define the port to listen on
+const port = 3000;
+
+app.get('/', (req, res) => {
+  res.send('Hello World! This is a simple Node.js application.');
+});
+
+app.listen(port, () => {
+  console.log(`Server is running on http://localhost:${port}`);
+});
+
+module.exports = app; // Export the Express app instance
 
 // Define a route handler for the root URL
 app.get('/', (req, res) => {
