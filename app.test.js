@@ -1,13 +1,11 @@
-const express = require('express');
-const app = express();
-const port = 3000;
+const request = require('supertest');
+const app = require('./app');
 
-app.get('/', (req, res) => {
-  res.send('Hello World! This is a simple Node.js application.');
+describe('GET /', () => {
+  it('responds with HTML containing animated text', async () => {
+    const response = await request(app).get('/');
+    expect(response.status).toBe(200);
+    expect(response.text).toContain('Welcome to Animated Node.js App!');
+    expect(response.text).toContain('This text is animated using CSS!');
+  });
 });
-
-app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
-});
-
-module.exports = app; // Export the Express app instance
